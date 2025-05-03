@@ -6,9 +6,9 @@ const Footer = () => {
     <div>
         <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 mt-40 text-sm'>
             <div>
-                <img src={assets.logo} className='mb-5 w-32 ' alt="" />
+                <img src={assets.asfit} className='mb-5 w-32 ' alt="" />
                 <p className='w-full md:w-2/3 text-gray-600'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus veniam explicabo alias commodi! Quidem provident repellat, nihil magnam laudantium consequuntur unde est cum eligendi id eos saepe et aut aliquid?
+                AsFit – Your Ultimate Destination for Fitness & Fashion!
                 </p>
             </div>
             <div>

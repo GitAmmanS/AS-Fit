@@ -15,8 +15,7 @@ const LatestCollection = () => {
         <div className='text-center py-8 text-3xl'>
             <Title text1={'LATEST'} text2={'Collection'}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit aliquam qui ipsa assumenda nobis perferendis labore quaerat ducimus? Suscipit nisi dolore cum eveniet magni explicabo ut modi molestias sit fugiat!
-            </p>
+            Designed for performance, style, and comfort, our newest arrivals feature high-quality activewear, cutting-edge fitness gear, and trendy athleisure essentials.</p>
         </div>
     {/* Rendering Product */}
     <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>

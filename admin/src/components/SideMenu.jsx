@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/admin_assets/assets'
 const SideMenu = () => {
     return (
-        <div className=' overflow-y-auto h-screen  border-l-2 border-r-2 '>
+        <div className=' border-l-2 border-r-2 '>
 
             <NavLink to='/addItems' className=''>
                 <div className='flex justify-center gap-2 mt-5 border-t border-b px-2 py-1 w-[10rem] active:bg-orange-400 active:border-orange-950 '>

@@ -22,8 +22,11 @@ a.active hr{
 ::-webkit-scrollbar{
     display: none;
 }
+html{
+    scroll-behavior: smooth;
+}
 /* for animations these lines are used */
- @keyframes appear{
+ /* @keyframes appear{
     from{
         opacity: 0;
         scale: 0.5;
@@ -37,4 +40,4 @@ p{
     animation: appear linear;
     animation-timeline: view();
     animation-range: entry 0;
-} 
+}  */

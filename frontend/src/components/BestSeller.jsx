@@ -16,8 +16,7 @@ const BestSeller = () => {
         <div className='text-center text-3xl py-8'>
             <Title text1={'BEST'} text2={'SELLERS'}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, obcaecati aliquam? Voluptas, dolores incidunt! Sit quis pariatur magnam ut fugit, nemo obcaecati quibusdam sunt commodi aliquid impedit. Ipsam, suscipit sunt!
-            </p>
+            Discover our top-selling fitness essentials that customers can’t get enough of! From high-performance activewear to must-have gym accessories, our best sellers are designed to deliver comfort, durability, and style. </p>
         </div>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
             {

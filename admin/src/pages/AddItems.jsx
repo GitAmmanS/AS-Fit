@@ -4,10 +4,13 @@ import axios from 'axios'
 import { BaseUrl } from '../utils/BaseUrl'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext } from 'react';
+import { AdminContext } from '../context/AdminContext';
 
 const AddItems = () => {
   const [images, setImages] = useState(Array(5).fill(null));
   const [sizeSelected, setSizeSeleted] = useState(false);
+  const {addProducts} = useContext(AdminContext);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -72,6 +75,7 @@ const AddItems = () => {
           sizes: [],
           bestseller: false
         })
+        addProducts(response.data.data);
       }
     } catch (error) {
       toast.error("Error in Insertion !", {

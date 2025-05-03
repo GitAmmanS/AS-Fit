@@ -7,10 +7,12 @@ import NavBar from './components/NavBar'
 import SideMenu from './components/SideMenu'
 const App = () => {
   return (
-    <div className='m-[1rem] flex-col '>
+    <div className='m-[1rem] flex-col h-screen'>
+      <div>
       <NavBar/>
+      </div>
       <div className='flex flex-row '>
-        <div className='flex flex-1 '>
+        <div className='flex flex-0 h-screen '>
       <SideMenu/>
       </div>
       <div className='flex flex-6 overflow-y-scroll'>

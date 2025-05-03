@@ -7,6 +7,11 @@ const NavBar = () => {
     const {setShowSearch , getCartCount} = useContext(ShopContext);
 
   return (
+    <div>
+       <marquee behavior="scroll" direction="left" scrollamount="6" className="bg-black rounded-2xl text-white py-2 font-semibold text-lg sm:text-base">
+  🎉 Free Delivery All Over Pakistan on Orders Over Rs. 2000 🎉
+</marquee>
+
     <div className='flex items-center justify-evenly py-5  font-medium '>
        <Link to='/'> <img src={assets.asfit} className='w-18 ' alt='no pic'/> </Link>
         <ul className='hidden sm:flex gap-5 text-sm text-gray-500'>
@@ -60,6 +65,7 @@ const NavBar = () => {
             <NavLink onClick={()=>setVisible(false)}className='py-2 pl-6 border'to='/contact' >CONTACT</NavLink>
             </div>
         </div>
+    </div>
     </div>
   )
 }

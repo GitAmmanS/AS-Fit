@@ -3,31 +3,86 @@ import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/assets/frontend_assets/assets'
 import { ShopContext } from '../context/ShopContext'
+import { toast ,ToastContainer } from 'react-toastify'
 const PlaceOrder = () => {
   const [method,setMethod] = useState('cod');
-  const {navigate} = useContext(ShopContext);
+  const {navigate, placeOrderForm, setPlaceOrderForm,setCartItems, postOrder, delivery_fee, getCartAmount} = useContext(ShopContext);
+
+  const placeOrder = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const data = await postOrder();
+  
+      if (data) {
+        toast.success("Order Placed Successfully!", {
+          position: "top-center"
+        });
+        setTimeout(() => {
+        navigate('/') 
+        }, 3000);
+        setPlaceOrderForm({});
+        setCartItems({});
+      } else {
+        toast.error("Error in Placing Order!", {
+          position: "top-center"
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error("Error in Placing Order!", {
+        position: "top-center"
+      });
+    }
+  };
+  
   return (
     <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
       {/* left side  */}
+      <form onSubmit={placeOrder}>
       <div className='flex flex-col gap-4 w-full sm:max-w-[480px]'>
         <div className='text-xl sm:text-2xl my-3'>
           <Title text1={'DELIVERY'} text2={'INFORMATION'}/>
         </div>
+       
         <div className='flex gap-3'>
-          <input type="text" placeholder='First name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
-          <input type="text" placeholder='Last name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+          <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            firstName:e.target.value
+          }))} type="text" placeholder='First name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+          <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            lastName:e.target.value
+          }))} type="text" placeholder='Last name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
         </div>
-        <input type="email" placeholder='Email Address' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
-        <input type="text" placeholder='Street' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+        <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            emailAddress:e.target.value
+          }))} type="email" placeholder='Email Address' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+        <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            street:e.target.value
+          }))} type="text" placeholder='Street' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
         <div className='flex gap-3'>
-          <input type="text" placeholder='City' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
-          <input type="text" placeholder='State' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+          <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            city:e.target.value
+          }))} type="text" placeholder='City' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+          <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            zipCode:e.target.value
+          }))} type="number" placeholder='Zip Code' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
         </div>
         <div className='flex gap-3'>
-          <input type="number" placeholder='Zip Code' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
-          <input type="text" placeholder='Country' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+          <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            country:e.target.value
+          }))} type="text"  placeholder='Country' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
         </div>
-        <input type="number" placeholder='Phone' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
+        <input onChange={(e)=>setPlaceOrderForm(prev=>({
+            ...prev,
+            phone:e.target.value
+          }))} type="number" placeholder='Phone' className='border border-gray-300 rounded py-1.5 px-3.5 w-full '/>
 
       </div>
       {/* Right Side  */}
@@ -41,24 +96,35 @@ const PlaceOrder = () => {
           
         
         <div className='flex gap-3 flex-col lg:flex-row'>
-          <div onClick={()=>setMethod('stripe')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
+          {/* <div onClick={()=>setMethod('stripe')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'stripe' ? 'bg-black' :''}`}></p>
             <img src={assets.stripe_logo} className='h-5 mx-4' alt="" />
           </div>
           <div onClick={()=>setMethod('razorpay')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'razorpay' ? 'bg-black' :''}`}></p>
             <img src={assets.razorpay_logo} className='h-5 mx-4' alt="" />
-          </div>
-          <div onClick={()=>setMethod('cod')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
+          </div> */}
+          <div onChange={()=>setPlaceOrderForm(prev=>({
+            ...prev,
+            paymentMethod:method
+          }))} onClick={()=>setMethod('cod')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'cod' ? 'bg-black' :''}`}></p>
             <p className='text-gray-500 text-sm font-medium mx-4'>CASH ON DELIVERY </p>
           </div>
         </div>
         </div>
         <div className='w-full text-end mt-8 '>
-          <button onClick={()=>navigate('/orders')} className=' cursor-pointer bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
+          <button onClick={()=> {const totalAmount = getCartAmount()+delivery_fee;
+    setPlaceOrderForm(prev=>({
+      ...prev,
+      ['totalAmount']:totalAmount
+    }))}}
+      className=' cursor-pointer bg-black text-white px-16 py-3 text-sm' type='submit'>PLACE ORDER</button>
         </div>
+        
       </div>
+      </form>
+      <ToastContainer />
     </div>  
   )
 }
